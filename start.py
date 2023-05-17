@@ -1,5 +1,6 @@
-from PIL import Image
 import os
+import time
+from PIL import Image
 
 # Set the input and output directories
 input_dir = './images'
@@ -8,6 +9,9 @@ output_dir = './Cropped'
 # Create the output directory if it doesn't already exist
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+
+# Start the timer
+start_time = time.time()
 
 # Loop through all files in the input directory
 for filename in os.listdir(input_dir):
@@ -31,3 +35,11 @@ for filename in os.listdir(input_dir):
             output_filename = f"{os.path.splitext(filename)[0]}_{i}.png"
             output_path = os.path.join(output_dir, output_filename)
             quadrant_img.save(output_path)
+
+# Calculate the total running time
+end_time = time.time()
+total_time = end_time - start_time
+
+# Display the total running time and a completion message
+print(f"Total running time: {total_time} seconds")
+print("Images cropping completed.")
